@@ -1,0 +1,46 @@
+brand = {
+	_id: id,
+	name: string,
+	country: string,
+	startTime: date,
+	beers: [beer...]
+}
+
+beer = {
+	_id: id,
+	type: string,
+	description: string,
+	brand: brand
+}
+
+pub = {
+	_id: id,
+	name: string,
+	address: {
+		city: string,
+		zipcode: int,
+		street: string,
+		number: int,
+		geoloc {
+			lat: float,
+			long: float
+		}
+	},
+	beers: [beer...],
+	brands: [brand...]
+}
+
+{
+	name: "Les Berthom Terreaux",
+	address: {
+		city: "Lyon",
+		zipcode: 69001,
+		street: "rue Pizay",
+		number: 24,
+		geoloc: {
+			lat: 45.7671106,
+			lng: 4.8366184
+		}
+	},
+	beers: [2018, 2389, 2402, 4251, 2327, 3911, 3912]
+}

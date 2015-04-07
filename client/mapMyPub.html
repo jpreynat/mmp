@@ -1,0 +1,135 @@
+<head>
+  <title>mapMyPub | Home</title>
+  <link href='//fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css' />
+</head>
+
+<body>
+<div id="page-container" class="container-fluid">
+<div class="row">
+<div class="col-xs-12 text-center">
+	<h1 id="site-title">mapMyPub</h1>
+
+	<nav id="site-nav" class="row">
+		<div class="col-xs-4">
+			<span class="fa-stack fa-2x" id="addBeer">
+				<i class="fa fa-square fa-stack-2x"></i>
+				<i class="fa fa-beer fa-stack-1x fa-inverse"></i>
+			</span>
+		</div>
+		<div class="col-xs-4">
+			<span class="fa-stack fa-2x" id="addPlace">
+				<i class="fa fa-square fa-stack-2x"></i>
+				<i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+			</span>
+		</div>
+		<div class="col-xs-4">
+			<span class="fa-stack fa-2x" id="preferences">
+				<i class="fa fa-square fa-stack-2x"></i>
+				<i class="fa fa-cog fa-stack-1x fa-inverse"></i>
+			</span>
+		</div>
+	</nav>
+
+	<div class="row">
+	<div id="pref-pane" class="col-xs-8 col-xs-offset-2">
+		{{> Template.dynamic template=prefPane}}
+	</div>
+	</div>
+
+	<div class="row">
+		{{> map}}
+	</div>
+
+	<img id="bg-bottom" src="img/beer-lineup.jpg" class="img-responsive" />
+</div>
+</div>
+</div>
+</body>
+
+<template name="map">
+<div id="main-container" class="col-xs-12 text-center">
+	{{> googleMap name="mmpMap" options=mmpMapOptions}}
+</div>
+</template>
+
+<template name="addBeer">
+<i class="fa fa-times fa-2x pull-right"></i>
+<h4 class="text-uppercase">Register a new beer</h4>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</template>
+
+<template name="addPlace">
+<i class="fa fa-times fa-2x pull-right"></i>
+<h4 class="text-uppercase">Register a new pub</h4>
+<form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</template>
+
+<template name="preferences">
+<i class="fa fa-times fa-2x pull-right"></i>
+<h4 class="text-uppercase">Preferences</h4>
+<div class="row">
+<form>
+	<div class="col-xs-6">
+		<div class="form-group">
+			<label for="brewery">Brewery</label>
+			<select id="brewery" class="form-control">
+				<option value="0">All</option>
+				{{#each breweries}}
+					{{> breweryOption}}
+				{{/each}}
+			</select>
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<div class="form-group">
+			<label for="beer">Beer</label>
+			<select id="beer" class="form-control">
+				<option value="0">All</option>
+				{{#each beers}}
+					<option value={{id}}>{{name}}</option>
+				{{/each}}
+			</select>
+		</div>
+	</div>
+	<!--div class="checkbox">
+	<label>
+	  <input type="checkbox"> Check me out
+	</label>
+	</div-->
+</form>
+</div>
+</template>
+
+<template name="breweryOption">
+	<option value={{id}} {{isSelectedBrewery}}>{{name}}</option>
+</template>
